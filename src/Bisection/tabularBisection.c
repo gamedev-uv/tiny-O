@@ -21,11 +21,33 @@ void displayTableElement(float value)
 
 void main()
 {
-    float a = 0, b = 2;
-    
+    float a, b;
     float precision;
+
     printf("--- [INPUT] ---");
-    printf("\n - Enter number of iterations/precision: ");
+    printf("\n - A: ");
+    scanf("%f", &a);
+
+    printf(" - B: ");
+    scanf("%f", &b);
+
+    float mul = f(a) * f(b);
+    if(mul > 0)
+    {
+        printf("Invalid Range! Can't find root using bisection they yield same sign results");
+        return;
+    }
+    if(mul == 0)
+    {
+        if(f(a) == 0)
+            printf("A[%f] is the root", a);
+        else
+            printf("B[%f] is the root", b);
+
+        return;
+    }
+
+    printf(" - Iterations/precision: ");
     scanf("%f", &precision);
 
     int steps;
@@ -39,22 +61,27 @@ void main()
     for(int i = 0; i < width - 1; i++) 
         printf("-");
 
+    float m;
     for(int i = 1; i <= steps; i++)
     {
-        float m = (a + b) / 2;
-        float value = f(m);
+        m = (a + b) / 2;
+        float fm = f(m);
+        float fa = f(a);
+        float fb = f(b);
 
         printf("\n| %02d |", i);
         displayTableElement(a);
         displayTableElement(b);
-        displayTableElement(f(a));
-        displayTableElement(f(b));
+        displayTableElement(fa);
+        displayTableElement(fb);
         displayTableElement(m);
-        displayTableElement(f(m));
+        displayTableElement(fm);
 
-        if(value < 0)
-            a = m;
-        else
+        if(fm * f(a) < 0)
             b = m;
+        else
+            a = m; 
     }
+    
+    printf("\nApproximate root: %f", m);
 }

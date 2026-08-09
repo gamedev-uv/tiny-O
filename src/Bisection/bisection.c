@@ -11,29 +11,50 @@ void main()
     float a = 0, b = 2;
     
     float precision;
-    printf("Finding root of the equation x^3 + x - 1. Using a = 0, b = 2");
-    printf("\n--- INPUT ---");
-    printf("\n - Enter precision: ");
+    printf("--- INPUT ---");
+    
+    printf("\n - A: ");
+    scanf("%f", &a);
+
+    printf(" - B: ");
+    scanf("%f", &b);
+
+    printf(" - Precision: ");
     scanf("%f", &precision);
 
-    int steps = (int) ceil(log2f(fabsf(b - a) / precision));
-
-    float m = (a + b) / 2;
-    for(int i = 0; i < steps ; i++)
+    float mul = f(a) * f(b);
+    if(mul > 0)
     {
-        float value = f(m);
-
-        if(fabsf(value) <= precision) 
-            break;
-
-        if(value < 0)
-            a = m;
-        else
-            b = m;
-
-        m = (a + b) / 2;
+        printf("Invalid Range! Can't find root using bisection they yield same sign results");
+        return;
     }
 
+    if(mul == 0)
+    {
+        if(f(a) == 0)
+            printf("A[%f] is the root", a);
+        else
+            printf("B[%f] is the root", b);
+
+        return;
+    }
+
+    float m;
+    do
+    {
+        m = (a + b) / 2;
+        float fm = f(m);
+        float fa = f(a);
+        float fb = f(b);
+
+        if(fabs(fm) <= precision) break;
+        if(fm * f(a) < 0)
+            b = m;
+        else
+            a = m; 
+
+    } while (1);
+
     printf("\n--- OUTPUT ---");
-    printf("\nApproximate root: %f. After %d iterations", m, steps);
+    printf("\nApproximate root: %f", m);
 }
