@@ -3,7 +3,7 @@
 
 float f(float x)
 {
-    return pow(x, 3) - x - 1;
+    return pow(x, 3) - 4 * x - 9;
 }
 
 void displayTableElement(float value)
@@ -34,7 +34,7 @@ void main()
     float mul = f(a) * f(b);
     if(mul > 0)
     {
-        printf("Invalid Range! Can't find root using bisection they yield same sign results");
+        printf("Invalid Range! Can't find root using regula falsi they yield same sign results");
         return;
     }
     if(mul == 0)
@@ -54,7 +54,7 @@ void main()
     if(roundf(precision) == precision)
         steps = (int) precision;
     else
-        steps = (int) ceil(log2f(fabsf(b - a) / precision));
+        steps = __INT_MAX__;
 
     printf("\n--- [OUTPUT] ---\n");
     int width = printf("| i  |     a      |      b     |    f(a)    |    f(b)    |     m      |    f(m)    |\n");
@@ -62,9 +62,11 @@ void main()
         printf("-");
 
     float m;
-    for(int i = 1; i <= steps; i++)
+    int i = 1;
+    while(i <= steps)
     {
-        m = (a + b) / 2;
+        m = (a * f(b) - b * f(a))/(f(b) - f(a));
+
         float fm = f(m);
         float fa = f(a);
         float fb = f(b);
@@ -77,10 +79,14 @@ void main()
         displayTableElement(m);
         displayTableElement(fm);
 
+        if(fabsf(fm) <= precision && steps == __INT_MAX__)
+            break;
+
         if(fm * f(a) < 0)
             b = m;
         else
             a = m; 
+        i++;
     }
     
     printf("\nApproximate root: %f", m);

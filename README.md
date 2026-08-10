@@ -12,11 +12,13 @@ Can't figure out how to run the code? Have a look at [Setup](#setup).
 |  :-     | :-   | :-   |
 |  1.     | Bisection | [Link](#1--bisection) |
 |  2.     | Tabular Bisection | [Link](#2-tabular-bisection) |
+|  3.     | Regula Falsi | [Link](#3-regula-falsi) |
+|  4.     | Newton Raphson | [Link](#4-newton-raphson) |
 
 ### 1.  Bisection
 WAP in C to find the root of the equation of $x^3 - x - 1$ using the interval $[0, 2]$.
 
-`Answer` [bisection.c](src/Bisection/bisection.c)
+`Answer` [bisection.c](src/Roots/bisection.c)
 
 `Output Terminal`
 ```
@@ -46,9 +48,9 @@ $$
 So, the minimum number of iterations should be $\log_2{\left(\frac{l}{p}\right)}$. In the program, we use the `ceil` function to round it up to the nearest integer.
 
 ### 2. Tabular Bisection
-WAP in C and represent the data for each interation in form of a table.
+WAP in C to approximate the root of a given equation using Bisection and represent the data for each interation in form of a table.
 
-`Answer` [tabularBisection.c](src/Bisection/tabularBisection.c)
+`Answer` [tabularBisection.c](src/Roots/tabularBisection.c)
 
 `Output Terminal`
 ```
@@ -78,6 +80,98 @@ WAP in C and represent the data for each interation in form of a table.
 | 01 |  0.000000  |  2.000000  | -1.000000  |  5.000000  |  1.000000  | -1.000000  |
 | 02 |  1.000000  |  2.000000  | -1.000000  |  5.000000  |  1.500000  |  0.875000  |
 | 03 |  1.000000  |  1.500000  | -1.000000  |  0.875000  |  1.250000  | -0.296875  |
+```
+
+> [!TIP]
+> The program supports both number of iterations and a specific precision value. That is being done by checking whether the input value is a whole number or not. In this program we are checking that by comparing the rounded off number with itself, but there are several other ways of doing it as well.
+
+> [!NOTE]
+> The programs following this for root finding will use the tabular version of the program as it is easier to view the steps.
+
+### 3. Regula Falsi
+WAP in C to approximate the root of a given equation using [Regula Falsi](https://en.wikipedia.org/wiki/Regula_falsi) and represent the data for each interation in form of a table.
+
+> [!TIP]
+> Regula Falsi is very similar to Bisection. The major difference lies as to how the new point is found. In Bisection we find it by finding the mid point of the interval points. Where as in Regula Falsi we find it using the given formula -  
+> ```math 
+> m = \frac{a \times f(b) - b \times f(a)}{f(b) - f(a)}
+> ```
+
+`Answer` [regulaFalsi.c](src/Roots/regulaFalsi.c)
+
+`Output Terminal`
+```
+--- [INPUT] ---
+ - A: 2
+ - B: 3
+ - Iterations/precision: 5
+
+--- [OUTPUT] ---
+| i  |     a      |      b     |    f(a)    |    f(b)    |     m      |    f(m)    |
+------------------------------------------------------------------------------------
+| 01 |  2.000000  |  3.000000  | -9.000000  |  6.000000  |  2.600000  | -1.824002  |
+| 02 |  2.600000  |  3.000000  | -1.824002  |  6.000000  |  2.693252  | -0.237225  |
+| 03 |  2.693252  |  3.000000  | -0.237225  |  6.000000  |  2.704918  | -0.028912  |
+| 04 |  2.704918  |  3.000000  | -0.028912  |  6.000000  |  2.706333  | -0.003497  |
+| 05 |  2.706333  |  3.000000  | -0.003497  |  6.000000  |  2.706504  | -0.000424  |
+Approximate root: 2.706504
+```
+
+```
+--- [INPUT] ---
+ - A: 2
+ - B: 3
+ - Iterations/precision: 0.5
+
+--- [OUTPUT] ---
+| i  |     a      |      b     |    f(a)    |    f(b)    |     m      |    f(m)    |
+------------------------------------------------------------------------------------
+| 01 |  2.000000  |  3.000000  | -9.000000  |  6.000000  |  2.600000  | -1.824002  |
+| 02 |  2.600000  |  3.000000  | -1.824002  |  6.000000  |  2.693252  | -0.237225  |
+Approximate root: 2.693252
+```
+
+> [!NOTE]
+> Unlike Bisection we don't have a set formula to reach a certain precision using `n` steps. Thus we manually check the value and iterate till the value is under the target precision.
+
+### 4. Newton Raphson
+WAP in C to approximate the root of a given equation using [ Newton Raphson](https://en.wikipedia.org/wiki/Newton%27s_method) and represent the data for each interation in form of a table.
+
+> [!NOTE]
+> This method unlike the previously discussed methods doesn't use an interval, instead it uses an initial point and then calculates the next points using a specific formula - 
+> ```math
+> x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+> ```
+
+`Answer` [newtonRaphson.c](src/Roots/newtonRaphson.c)
+
+`Output Terminal`
+```
+--- [INPUT] ---
+ - x_0: 0
+ - Iterations/precision: 4
+| i  |      x      |    f(x)    |    f'(x)    |
+-----------------------------------------------
+| 01 |   0.000000  |  3.000000  | -9.000000  |
+| 02 |   0.333333  |  0.037037  | -8.666667  |
+| 03 |   0.337607  |  0.000018  | -8.658065  |
+| 04 |   0.337609  | -0.000000  | -8.658061  |
+
+--- [OUTPUT] ---
+Root: 0.337609
+```
+
+```
+--- [INPUT] ---
+ - x_0: 0
+ - Iterations/precision: 0.5
+| i  |      x      |    f(x)    |    f'(x)    |
+-----------------------------------------------
+| 01 |   0.000000  |  3.000000  | -9.000000  |
+| 02 |   0.333333  |  0.037037  | -8.666667  |
+
+--- [OUTPUT] ---
+Root: 0.333333
 ```
 
 ### Setup
