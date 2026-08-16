@@ -180,7 +180,7 @@ Root: 0.333333
 WAP in C to approxiate the definite integral of a given function using 
 - [Midpoint Method](https://math.libretexts.org/Courses/Mount_Royal_University/Calculus_for_Scientists_II/2%3A_Techniques_of_Integration/2.5%3A_Numerical_Integration_-_Midpoint%2C_Trapezoid%2C_Simpson's_rule)
 - [Trapeziodal Method](https://en.wikipedia.org/wiki/Trapezoidal_rule)
-- [Simpson's $\frac{1}{3}^{rd}$ Method](https://en.wikipedia.org/wiki/Simpson%27s_rule)
+- [Simpson's 1/3rd Method](https://en.wikipedia.org/wiki/Simpson%27s_rule)
 
 `Answer` [integration.c](src/Integration/integration.c)
 
