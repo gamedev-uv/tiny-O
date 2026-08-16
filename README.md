@@ -14,6 +14,8 @@ Can't figure out how to run the code? Have a look at [Setup](#setup).
 |  2.     | Tabular Bisection | [Link](#2-tabular-bisection) |
 |  3.     | Regula Falsi | [Link](#3-regula-falsi) |
 |  4.     | Newton Raphson | [Link](#4-newton-raphson) |
+|  5.     | Integration    | [Link](#5-integration) |
+|  6.     | Differential Equation  | [Link](#6-differential-equations) |
 
 ### 1.  Bisection
 WAP in C to find the root of the equation of $x^3 - x - 1$ using the interval $[0, 2]$.
@@ -172,6 +174,46 @@ Root: 0.337609
 
 --- [OUTPUT] ---
 Root: 0.333333
+```
+
+### 5. Integration
+WAP in C to approxiate the definite integral of a given function using 
+- [Midpoint Method](https://math.libretexts.org/Courses/Mount_Royal_University/Calculus_for_Scientists_II/2%3A_Techniques_of_Integration/2.5%3A_Numerical_Integration_-_Midpoint%2C_Trapezoid%2C_Simpson's_rule)
+- [Trapeziodal Method](https://en.wikipedia.org/wiki/Trapezoidal_rule)
+- [Simpson's $\frac{1}{3}^{rd}$ Method](https://en.wikipedia.org/wiki/Simpson%27s_rule)
+
+`Answer` [integration.c](src/Integration/integration.c)
+
+`Output Terminal`
+```
+--- INPUT ---
+ - Enter n: 6
+ - Enter interval: 1 3
+
+--- OUTPUT ---
+ - Midpoint  Appoximation  : 8.648149
+ - Trapeziod Approximation : 8.703704
+ - Simpsons  Approximation : 8.666667
+```
+
+### 6. Differential Equations
+WAP in C to approximate the value of a function at a given point `x`. Using the derivate. Using the following methods - 
+- [Euler's Method](https://en.wikipedia.org/wiki/Euler_method)
+- [RK4 Method](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods)
+
+`Answer` [differentialEquations.c](src/DifferentialEquations/differentialEquations.c)
+
+`Output Terminal`
+```
+--- INPUT ---
+ - x0: 0
+ - y0: 1
+ -  h: 0.2
+ - xT: 5
+
+--- OUTPUT ---
+Euler's Method: f(5.000000): 184.792542
+RK 4    Method: f(5.000000): 290.809784
 ```
 
 ### Setup
