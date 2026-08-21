@@ -220,6 +220,16 @@ RK 4    Method: f(5.000000): 290.809784
 ### 7. Forward Difference Table
 WAP in C to input a set of `(x, y)` coordinates and then find the forward difference table for the following. This table is used for [Newton Polynomial Interpolation](https://en.wikipedia.org/wiki/Newton_polynomial).
 
+> [!TIP]
+> Some important formulas - 
+> ```math
+> \Delta^{}(y_i) = y_{i+1} - y{i}
+> ```
+> 
+> ```math
+> \Delta^{r}(y_i) = \Delta^{r-1}(y_{i + 1}) -  \Delta^{r-1}(y_{i})
+> ```
+
 `Answer` [differentialEquations.c](src/DifferentialEquations/differentialEquations.c)
 
 `Output Terminal`
