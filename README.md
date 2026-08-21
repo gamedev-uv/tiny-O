@@ -16,6 +16,7 @@ Can't figure out how to run the code? Have a look at [Setup](#setup).
 |  4.     | Newton Raphson | [Link](#4-newton-raphson) |
 |  5.     | Integration    | [Link](#5-integration) |
 |  6.     | Differential Equation  | [Link](#6-differential-equations) |
+|  7.     | Positive Difference Table  | [Link](#7-forward-difference-table) |
 
 ### 1.  Bisection
 WAP in C to find the root of the equation of $x^3 - x - 1$ using the interval $[0, 2]$.
@@ -201,7 +202,7 @@ WAP in C to approximate the value of a function at a given point `x`. Using the 
 - [Euler's Method](https://en.wikipedia.org/wiki/Euler_method)
 - [RK4 Method](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods)
 
-`Answer` [differentialEquations.c](src/DifferentialEquations/differentialEquations.c)
+`Answer` [forwardDifferenceTable.c](src/Interpolation/forwardDifferenceTable.c)
 
 `Output Terminal`
 ```
@@ -215,6 +216,40 @@ WAP in C to approximate the value of a function at a given point `x`. Using the 
 Euler's Method: f(5.000000): 184.792542
 RK 4    Method: f(5.000000): 290.809784
 ```
+
+### 7. Forward Difference Table
+WAP in C to input a set of `(x, y)` coordinates and then find the forward difference table for the following. This table is used for [Newton Polynomial Interpolation](https://en.wikipedia.org/wiki/Newton_polynomial).
+
+`Answer` [differentialEquations.c](src/DifferentialEquations/differentialEquations.c)
+
+`Output Terminal`
+```
+--- INPUT ---
+ - Enter n: 7  
+ - Enter x, y values: 
+  - x0, y0: 1 7
+  - x1, y1: 2 3
+  - x2, y2: 3 9
+  - x3, y3: 4 8
+  - x4, y4: 5 2
+  - x5, y5: 6 1
+  - x6, y6: 7 -2
+
+
+=== FORWARD DIFFERENCE TABLE ===
+|    x    |    y    |    y'    |    y''    |    y'''    |    y''''    |    y'''''    |    y''''''    |
+------------------------------------------------------------------------------------------------------
+    01        07        -4          10          -17           19            -11            -14       
+    02        03        06          -7          02            08            -25      
+    03        09        -1          -5          10           -17      
+    04        08        -6          05          -7      
+    05        02        -1          -2     
+    06        01        -3     
+    07        -2
+```
+
+> [!NOTE]
+> $y'$ is used for $\Delta(y_i)$. $y'$ is used for $\Delta^{2}(y_i)$ and so on. So $\Delta^{n}(y_i)$ is represented as $y^{'''\ldots\text{ n times} }$
 
 ### Setup
 All C programs in this repository were written and tested on Windows using:

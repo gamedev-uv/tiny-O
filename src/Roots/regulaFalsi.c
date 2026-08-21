@@ -82,7 +82,7 @@ void main()
         if(fabsf(fm) <= precision && steps == __INT_MAX__)
             break;
 
-        if(fm * f(a) < 0)
+        if(fm * fa < 0)
             b = m;
         else
             a = m; 

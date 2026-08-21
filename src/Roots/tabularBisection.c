@@ -77,7 +77,7 @@ void main()
         displayTableElement(m);
         displayTableElement(fm);
 
-        if(fm * f(a) < 0)
+        if(fm * fa < 0)
             b = m;
         else
             a = m; 

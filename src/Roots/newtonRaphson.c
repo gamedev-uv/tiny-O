@@ -11,7 +11,6 @@ float dF(float x)
     return 3 * pow(x, 2) - 9;
 }
 
-
 void displayTableElement(float value)
 {
     char sign[3] = "  ";
