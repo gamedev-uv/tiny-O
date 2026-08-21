@@ -230,7 +230,7 @@ WAP in C to input a set of `(x, y)` coordinates and then find the forward differ
 > \Delta^{r}(y_i) = \Delta^{r-1}(y_{i + 1}) -  \Delta^{r-1}(y_{i})
 > ```
 
-`Answer` [differentialEquations.c](src/DifferentialEquations/differentialEquations.c)
+`Answer` [forwardDifferenceTable.c](src/Interpolation/forwardDifferenceTable.c)
 
 `Output Terminal`
 ```
