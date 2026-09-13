@@ -202,7 +202,7 @@ WAP in C to approximate the value of a function at a given point `x`. Using the 
 - [Euler's Method](https://en.wikipedia.org/wiki/Euler_method)
 - [RK4 Method](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods)
 
-`Answer` [forwardDifferenceTable.c](src/Interpolation/forwardDifferenceTable.c)
+`Answer` [differentialEquations.c](src/DifferentialEquations/differentialEquations.c)
 
 `Output Terminal`
 ```
