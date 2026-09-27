@@ -3,7 +3,7 @@
 
 float f(float x)
 {
-    return 2 * pow(x, 3) + 3 * x - 1;
+    return pow(x, 3) - 2 * x - 5;
 }
 
 void displayTableElement(float value)

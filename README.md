@@ -16,7 +16,9 @@ Can't figure out how to run the code? Have a look at [Setup](#setup).
 |  4.     | Newton Raphson | [Link](#4-newton-raphson) |
 |  5.     | Integration    | [Link](#5-integration) |
 |  6.     | Differential Equation  | [Link](#6-differential-equations) |
-|  7.     | Positive Difference Table  | [Link](#7-forward-difference-table) |
+|  7.     | Forward Interpolation  | [Link](#7-newton-forward-interpolation) |
+|  8.     | Backward Interpolation  | [Link](#8-newton-backward-interpolation) |
+|  9.     | Lagrange Interpolation  | [Link](#9-lagranges-interpolation) |
 
 ### 1.  Bisection
 WAP in C to find the root of the equation of $x^3 - x - 1$ using the interval $[0, 2]$.
@@ -217,49 +219,94 @@ Euler's Method: f(5.000000): 184.792542
 RK 4    Method: f(5.000000): 290.809784
 ```
 
-### 7. Forward Difference Table
-WAP in C to input a set of `(x, y)` coordinates and then find the forward difference table for the following. This table is used for [Newton Polynomial Interpolation](https://en.wikipedia.org/wiki/Newton_polynomial).
+### 7. Newton Forward Interpolation
+WAP in C to input a set of `n`, `(x, y)` coordinates and then find the difference table for the following. Then using that table predict the value of the function at a given target `x` using forward interpolation.
 
-> [!TIP]
-> Some important formulas - 
+> [!NOTE]
+> Newton's forward interpolation states that if $x$ is where the value is to be predicted then - 
+> $h = x_1 - x_0$
+> $u = \frac{x - x_0}{h}$
+> Then - 
 > ```math
-> \Delta^{}(y_i) = y_{i+1} - y{i}
-> ```
-> 
-> ```math
-> \Delta^{r}(y_i) = \Delta^{r-1}(y_{i + 1}) -  \Delta^{r-1}(y_{i})
+> f(x) = P(u) = y_0 + \frac{u\Delta{y_0}}{1!} + \frac{u(u - 1)\Delta^2{y_0}}{2!} + \frac{u(u - 1)(u - 2)\Delta^3{y_0}}{3!} + ... + \frac{u(u - 1)(u - 2)(u - 3)...(u - n + 1)\Delta^n{y_0}}{n!}
 > ```
 
-`Answer` [forwardDifferenceTable.c](src/Interpolation/forwardDifferenceTable.c)
+`Answer` [forwardInterpolation.c](src/Interpolation/forwardInterpolation.c)
 
 `Output Terminal`
 ```
 --- INPUT ---
- - Enter n: 7  
+ - Enter n: 5
  - Enter x, y values: 
-  - x0, y0: 1 7
-  - x1, y1: 2 3
+  - x0, y0: 1 1
+  - x1, y1: 2 4
   - x2, y2: 3 9
-  - x3, y3: 4 8
-  - x4, y4: 5 2
-  - x5, y5: 6 1
-  - x6, y6: 7 -2
+  - x3, y3: 4 16
+  - x4, y4: 5 25
+ - xT: 2.5
 
+--- OUTPUT ---
+ -- DIFFERENCE TABLE --
+|    x    |    y    |    y'    |    y''    |    y'''    |    y''''    |
+-----------------------------------------------------------------------
+  1.000      1.000      3.000        2.000        0.000          0.000     
+  2.000      4.000      5.000        2.000        0.000     
+  3.000      9.000      7.000        2.000    
+  4.000     16.000      9.000    
+  5.000     25.000   
 
-=== FORWARD DIFFERENCE TABLE ===
-|    x    |    y    |    y'    |    y''    |    y'''    |    y''''    |    y'''''    |    y''''''    |
-------------------------------------------------------------------------------------------------------
-    01        07        -4          10          -17           19            -11            -14       
-    02        03        06          -7          02            08            -25      
-    03        09        -1          -5          10           -17      
-    04        08        -6          05          -7      
-    05        02        -1          -2     
-    06        01        -3     
-    07        -2
+ f(2.500000): 6.250000
 ```
 
-> [!NOTE]
-> $y'$ is used for $\Delta(y_i)$. $y'$ is used for $\Delta^{2}(y_i)$ and so on. So $\Delta^{n}(y_i)$ is represented as $y^{'''\ldots\text{ n times} }$
+### 8. Newton Backward Interpolation
+WAP in C to input a set of `n`, `(x, y)` coordinates and then find the difference table for the following. Then using that table predict the value of the function at a given target `x` using backward interpolation.
+
+`Answer` [backwardInterpolation.c](src/Interpolation/backwardInterpolation.c)
+
+`Output Terminal`
+```
+--- INPUT ---
+ - Enter n: 5
+ - Enter x, y values: 
+  - x0, y0: 1891 46
+  - x1, y1: 1901 66
+  - x2, y2: 1911 81
+  - x3, y3: 1921 93
+  - x4, y4: 1931 101
+ - xT: 1925
+
+--- OUTPUT ---
+ -- DIFFERENCE TABLE --
+|    x    |    y    |    y'    |    y''    |    y'''    |    y''''    |
+-----------------------------------------------------------------------
+1891.000000 46.000000  20.000000    -5.000000     2.000000      -3.000000   
+1901.000000 66.000000  15.000000    -3.000000    -1.000000   
+1911.000000 81.000000  12.000000    -4.000000  
+1921.000000 93.000000   8.000000  
+1931.000000101.000000 
+
+ f(1925.000000): 96.836800
+```
+
+### 9. Lagranges Interpolation
+WAP in C to input a set of `n`, `(x, y)` coordinates and then find the approximate value of the function at a given target `x` using Lagrange Interpolation.
+
+`Answer` [lagrangesInterpolation.c](src/Interpolation/lagrangesInterpolation.c)
+
+`Output Terminal`
+```
+--- INPUT ---
+ - N: 4
+ - Enter Elements -
+  - x0, y0: 0 2
+  - x1, y1: 1 3
+  - x2, y2: 2 12
+  - x3, y3: 5 147
+ - Target x: 3
+
+--- OUTPUT ---
+P(3.000000): 35.000000
+```
 
 ### Setup
 All C programs in this repository were written and tested on Windows using:

@@ -3,7 +3,7 @@
 
 float f(float x)
 {
-    return pow(x, 3) - x - 1;
+    return pow(x, 3) - 4 * x - 9;
 }
 
 void main()

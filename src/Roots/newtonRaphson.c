@@ -3,12 +3,12 @@
 
 float f(float x)
 {
-    return pow(x, 3) - 9 * x + 3;
+    return pow(x, 3) - 2 * x - 5;
 }
 
 float dF(float x)
 {
-    return 3 * pow(x, 2) - 9;
+    return 3 * pow(x, 2) - 2;
 }
 
 void displayTableElement(float value)

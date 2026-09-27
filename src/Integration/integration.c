@@ -3,7 +3,7 @@
 
 float f(float x)
 {
-    return pow(x, 2);
+    return 1 / (1 + pow(x, 2));
 }
 
 float midPointMethod(float a, float b, int n)
